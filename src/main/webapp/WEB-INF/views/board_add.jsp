@@ -26,7 +26,7 @@
 </style>
 </head>
 <body>
-	<form action="/web/insert" method="POST" enctype="multipart/form-data">
+	<form action="/Articleinsert" method="POST" enctype="multipart/form-data">
 		<table>
 			<tbody>
 				<tr>
