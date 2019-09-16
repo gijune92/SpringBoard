@@ -119,7 +119,7 @@ public class BoardController {
 	
 	@RequestMapping("/accountLog")
 	public String AccountLogView() {
-		return "/accounLog";
+		return "/accountLog";
 	}
 	@RequestMapping("/downLog")
 	public String DownloadLogView() {
