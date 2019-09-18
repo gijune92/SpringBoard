@@ -7,6 +7,8 @@
 		<title>Insert title here</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 		<script type="text/javascript" src="/resources/Angular/main.js"></script>
+		<style>
+		</style>
 	</head>
 	<body data-ng-app="myWeb">
 		<div class="container" data-ng-controller="myCtl1">
@@ -34,6 +36,7 @@
 			<button type="button" onclick="location.href='/i'">글쓰기</button>
 			<button type="button" onclick="location.href='/accountLog'">접속로그</button>
 			<button type="button" onclick="location.href='/downLog'">다운로드로그</button>
+			<button type="button" onclick="location.href='/acceptList'">대기자명단</button>
 		</div>
 	</body>
 </html>

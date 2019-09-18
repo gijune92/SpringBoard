@@ -11,8 +11,19 @@
 		select * from article where delYn='N';
 	</select>
 	
-	<select id="" parameterType="HashMap">
-		select count(*) from user where id=#{id} and pw = #{pw};
+	<select id="SelectUser" parameterType="HashMap" resultType="Integer">
+		select count(*) from user where id=#{id} and pw=#{pw};
 	</select>
 
+	<insert id="InsertUser" parameterType="HashMap">
+		insert into account (id, pw, name, addr, accountDivision) values( #{id}, #{pw}, #{name}, #{addr}, #{accountDiv});
+	</insert>
+	
+	<select id="SelectAcceptList" resultType="HashMap">
+		select id, name, addr, accountDivision from account where delYn='N' and accessYn='N';
+	</select>
+	
+	<update id="UpdateAllowUser" parameterType="HashMap">
+		update m1.account set accessYn='Y' where no=(select no from account where id=#{id});
+	</update>
 </mapper>

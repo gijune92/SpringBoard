@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import net.sf.json.JSONArray;
+
 @Repository
 public class dao implements daoInterface{
 
@@ -37,6 +39,7 @@ public class dao implements daoInterface{
 	@Override
 	public int getUser(HashMap<String, Object> params) {
 		int res = s.selectOne("Board.SelectUser", params);
+		System.out.println("getUser : " + res);
 		return res;
 	}
 
@@ -44,5 +47,23 @@ public class dao implements daoInterface{
 	public int setUser(HashMap<String, Object> params) {
 		int res = s.insert("Board.InsertUser", params);
 		return res;
+	}
+	
+	@Override
+	public List<HashMap<String, Object>> acceptList() {
+		
+		return s.selectList("Board.SelectAcceptList");
+	}
+	@Override
+	public List<HashMap<String, Object>> allowList(List<HashMap<String, Object>> params) {
+		
+		for(int i=0; i < params.size(); i++) {
+			HashMap<String, Object> data = new HashMap<String, Object>();
+			//data.put(params.get(i). )
+			System.out.println(data.toString());
+			//s.update("Board.UpdateAllowUser", params.get(i).toString());
+		}
+		
+		return null;
 	}
 }

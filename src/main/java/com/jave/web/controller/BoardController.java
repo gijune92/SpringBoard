@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,42 +30,13 @@ public class BoardController {
 
 	@Autowired
 	BoardService bs;
-	LoginService ls;
+	
 	
 	@RequestMapping("/")
 	public String Main(HttpServletRequest req) {
 		return "main";
 	}
-	/***
-	 * login 
-	 ***/
-	@RequestMapping("/login")
-	public String Login() {
-		return "login";
-	}
-	@RequestMapping("/loginAccept")
-	public String LoginCheck(HttpServletRequest req, HttpSession session) {
-		String id = (String)req.getParameter("id");
-		String pw = (String)req.getParameter("password");
-		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("id", id);
-		params.put("pw", pw);
-		
-		int res = ls.loginCheck(params);
-		
-		return "redirect:/";
-	}
-	@RequestMapping("/newAccount")
-	public String Account() {
-		return "account";
-	}
-	@RequestMapping("/account")
-	public String Account(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
-		
-		
-		return null;
-	}
-	// Login End
+	
 
 	/*
 	 * Board
