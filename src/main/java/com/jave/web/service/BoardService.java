@@ -25,7 +25,10 @@ public class BoardService {
 		if(res != 0) {
 			System.out.println("데이터 입력 성공");
 		}
-		
 	}
-
+	
+	public List<HashMap<String, Object>> accountLog(){
+		
+		return d.LogInAndOutList();
+	}
 }

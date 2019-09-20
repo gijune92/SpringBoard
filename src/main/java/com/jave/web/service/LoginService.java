@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,20 @@ public class LoginService {
 	@Autowired
 	dao d;
 
-	public int loginCheck(HashMap<String, Object> params) {
-		System.out.println(params.get("id"));
-		System.out.println(params.get("pw"));
-		int res = d.getUser(params);
+	public HashMap<String, Object> loginCheck(HashMap<String, Object> params) {
+		HashMap<String, Object> res = d.getUser(params);
+		
+		Object count = res.get("count(*)");
+		Object accountDivision = res.get("accountDivision");
+		res.clear();
+		res.put("count", count);
+		res.put("accountDivision", accountDivision);
+		res.put("id", params.get("id"));
 		return res;
+	}
+	
+	public void accountLogService(HashMap<String, Object> params) {
+		d.LogInAndOut(params);
 	}
 
 	/**********************
@@ -50,13 +60,16 @@ public class LoginService {
 		return d.acceptList();
 	}
 	
-	public String allow(List<HashMap<String, Object>> params) {
-		
-	    for(int i = 0; i < params.size(); i++) {
-	    	System.out.println("Service : " + params.get(i).toString());
-	    }
-	    d.allowList(params);
-	    return null;
+	public int allow(List<HashMap<String, Object>> params) {
+		//System.out.println("Service : " + params.toString());
+		int res = 0;
+		for(int i =0; i<params.size(); i++) {
+			HashMap<String, Object> p = new HashMap<String, Object>();
+			int flag = 0;
+			p.putAll(params.get(i));
+			flag = d.allowList(p);
+			System.out.println("flag : " + flag);
+		}
+	    return res;
 	}
-	
 }

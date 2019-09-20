@@ -11,8 +11,8 @@
 		select * from article where delYn='N';
 	</select>
 	
-	<select id="SelectUser" parameterType="HashMap" resultType="Integer">
-		select count(*) from user where id=#{id} and pw=#{pw};
+	<select id="SelectUser" parameterType="HashMap" resultType="HashMap">
+		select count(*), accountDivision from account where id=#{id} and pw=#{pw} and delYn='N' and accessYn='Y';
 	</select>
 
 	<insert id="InsertUser" parameterType="HashMap">
@@ -23,7 +23,15 @@
 		select id, name, addr, accountDivision from account where delYn='N' and accessYn='N';
 	</select>
 	
+	<select id="SelectAccountLog" resultType="HashMap">
+		select * from accountLog;
+	</select>
+	
 	<update id="UpdateAllowUser" parameterType="HashMap">
 		update m1.account set accessYn='Y' where no=(select no from account where id=#{id});
 	</update>
+	
+	<insert id="InsertAccountLog" parameterType="HashMap">
+		insert into accountLog (id, ctime, IOflag) values (#{id}, #{ctime}, #{IOflag}); 
+	</insert>
 </mapper>

@@ -32,11 +32,28 @@
 			</table>	
 		</div>
 		<div class="container">
-			<button type="button" onclick="location.href='/login'"> 로그인 </button>
-			<button type="button" onclick="location.href='/i'">글쓰기</button>
-			<button type="button" onclick="location.href='/accountLog'">접속로그</button>
-			<button type="button" onclick="location.href='/downLog'">다운로드로그</button>
-			<button type="button" onclick="location.href='/acceptList'">대기자명단</button>
+			<c:set var="user" value="${ sessionScope.user }" />
+			<c:set var="accountDivision" value="${ sessionScope.accountDivision }" />
+			<c:set var="msg" value="${ sessionScope.msg }" />
+			
+			<c:if test="${ msg != null }" >
+				<script> alert("msg, " +  ${msg})</script>
+			</c:if>
+			
+ 			<c:if test="${ user eq null }">
+				<button type="button" onclick="location.href='/login'"> 로그인 </button>
+			</c:if>
+			<c:if test="${ user != null }">
+				<button type="button" onclick="location.href='/logout'"> 로그아웃 </button>
+				<button type="button" onclick="location.href='/i'">글쓰기</button>
+				
+				<c:if test="${ accountDivision == 9 }">
+					<button type="button" onclick="location.href='/accountLog'">접속로그</button>
+					<button type="button" onclick="location.href='/downLog'">다운로드로그</button>
+					<button type="button" onclick="location.href='/acceptList'">대기자명단</button>
+				</c:if>
+				
+			</c:if>	
 		</div>
 	</body>
 </html>

@@ -9,8 +9,15 @@ public interface daoInterface {
 	
 	public List<HashMap<String, Object>> getData();
 	public int setArticle(Object bean);
-	public int getUser(HashMap<String, Object> params);
+	
+	public HashMap<String, Object> getUser(HashMap<String, Object> params);
 	public int setUser(HashMap<String, Object> params);
+	
+	public void LogInAndOut(HashMap<String, Object> params);
+	public List<HashMap<String, Object>> LogInAndOutList();
+	
+	
 	public List<HashMap<String, Object>> acceptList();
-	public List<HashMap<String, Object>> allowList(List<HashMap<String, Object>> params);
+	
+	public int allowList(HashMap<String, Object> data);
 }

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.jave.web.Bean.BoardBean;
 import com.jave.web.service.BoardService;
@@ -88,8 +89,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/accountLog")
-	public String AccountLogView() {
-		return "/accountLog";
+	public ModelAndView AccountLogView() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("accountLog");
+		mv.addObject("List", bs.accountLog());
+		
+		return mv;
 	}
 	@RequestMapping("/downLog")
 	public String DownloadLogView() {
